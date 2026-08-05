@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    container_name: docker-task2
+    ports:
+      - "8081:80"
+    env_file:
+      - .env

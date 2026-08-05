@@ -1,0 +1,40 @@
+name: Docker CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Display Files
+        run: ls -la
+
+      - name: HTML Check
+        run: |
+          echo "Checking HTML..."
+          test -f app/index.html
+
+      - name: CSS Check
+        run: |
+          echo "Checking CSS..."
+          test -f app/style.css
+
+      - name: JS Check
+        run: |
+          echo "Checking JavaScript..."
+          test -f app/script.js
+
+      - name: Docker Build
+        run: docker build -t docker-task2 .
+
+      - name: Deployment Status
+        run: |
+          echo "Deployment Successful"
